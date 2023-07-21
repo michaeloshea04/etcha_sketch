@@ -9,3 +9,7 @@ function createGrid() {
 }
 
 window.addEventListener('load', createGrid);
+
+function pixelFunc(){
+    prompt("Enter number of pixels here:")
+};
