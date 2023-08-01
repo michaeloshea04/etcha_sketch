@@ -1,15 +1,37 @@
-function createGrid() {
-    const gridContainer = document.getElementById('grid-container');
+//Grid creation
+let grid = document.getElementById("gridContainer");
+let resetBtn = document.getElementById('resetBtn');
 
-    for (let i = 0; i < 16 * 16; i++) {
-        const square = document.createElement('div');
-        square.classList.add('square');
-        gridContainer.appendChild(square);
+resetBtn.onclick = () => reloadGrid();
+
+function generateGrid(rows, columns) {
+  for(let i = 0; i < rows; i++) {
+    for(let j = 0; j < columns; j++) {
+      const div = document.createElement('div');
+      div.classList.add('grid-square');
+      grid.appendChild(div);
+      
     }
+  }
 }
 
-window.addEventListener('load', createGrid);
+generateGrid(16, 16);
 
-function pixelFunc(){
-    prompt("Enter number of pixels here:")
-};
+let gridSquares = document.querySelectorAll('.grid-square');
+
+gridSquares.forEach((item) => {
+  item.addEventListener('mouseover', () => {
+    item.style.backgroundColor = 'red';
+  });
+});
+
+//Insert reset button function
+function reloadGrid() {
+  clearGrid();
+  generateGrid(16, 16);
+}
+
+function clearGrid() {
+  grid.innerHTML = '';
+}
+
